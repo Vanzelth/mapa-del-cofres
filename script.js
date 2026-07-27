@@ -94,20 +94,32 @@ countries.forEach(c => {
 
 Object.keys(groups)
 .sort()
-.forEach(hour=>{
+.forEach(hour => {
 
     countryTable.innerHTML += `
-        <tr>
-            <td style="font-size:22px;font-weight:bold;">
-                🕒 ${hour}
-            </td>
-        </tr>
+    <tr>
+        <td style="
+            font-size:30px;
+            padding:12px 0;
+            border-bottom:1px solid #334155;
+            white-space:nowrap;
+        ">
+            ${groups[hour].join(" ")}
+        </td>
 
-        <tr>
-            <td style="font-size:28px;padding-bottom:18px;">
-                ${groups[hour].join(" ")}
-            </td>
-        </tr>
+        <td style="
+            width:90px;
+            text-align:right;
+            vertical-align:middle;
+            font-size:22px;
+            font-weight:bold;
+            font-family:monospace;
+            border-bottom:1px solid #334155;
+            white-space:nowrap;
+        ">
+            🕒 ${hour}
+        </td>
+    </tr>
     `;
 
 });
