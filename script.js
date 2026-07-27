@@ -1,7 +1,7 @@
-const INTERVAL = 225 * 60 * 1000; // 3h 45m
+const INTERVAL = 225 * 60 * 1000; // 3 horas 45 minutos
 
-// Hora base en Chile (05:15)
-const BASE = new Date("2026-07-27T05:15:00-04:00");
+// Último cofre confirmado (hora de Chile)
+const BASE = new Date("2026-07-26T05:15:00-04:00");
 
 const countdown = document.getElementById("countdown");
 const progressBar = document.getElementById("progress-bar");
