@@ -9,29 +9,29 @@ const spawnList = document.getElementById("spawnList");
 const countryTable = document.getElementById("countryTable");
 
 const countries = [
-    { flag:"🇲🇽", zone:"America/Mexico_City" },
+    { flag:"https://flagcdn.com/w40/mx.png", zone:"America/Mexico_City" },
 
-    { flag:"🇬🇹", zone:"America/Guatemala" },
-    { flag:"🇧🇿", zone:"America/Belize" },
-    { flag:"🇭🇳", zone:"America/Tegucigalpa" },
-    { flag:"🇸🇻", zone:"America/El_Salvador" },
-    { flag:"🇳🇮", zone:"America/Managua" },
-    { flag:"🇨🇷", zone:"America/Costa_Rica" },
-    { flag:"🇵🇦", zone:"America/Panama" },
-    { flag:"🇨🇴", zone:"America/Bogota" },
-    { flag:"🇪🇨", zone:"America/Guayaquil" },
-    { flag:"🇵🇪", zone:"America/Lima" },
+    { flag:"https://flagcdn.com/w40/gt.png", zone:"America/Guatemala" },
+    { flag:"https://flagcdn.com/w40/bz.png", zone:"America/Belize" },
+    { flag:"https://flagcdn.com/w40/hn.png", zone:"America/Tegucigalpa" },
+    { flag:"https://flagcdn.com/w40/sv.png", zone:"America/El_Salvador" },
+    { flag:"https://flagcdn.com/w40/ni.png", zone:"America/Managua" },
+    { flag:"https://flagcdn.com/w40/cr.png", zone:"America/Costa_Rica" },
+    { flag:"https://flagcdn.com/w40/pa.png", zone:"America/Panama" },
+    { flag:"https://flagcdn.com/w40/co.png", zone:"America/Bogota" },
+    { flag:"https://flagcdn.com/w40/ec.png", zone:"America/Guayaquil" },
+    { flag:"https://flagcdn.com/w40/pe.png", zone:"America/Lima" },
 
-    { flag:"🇨🇱", zone:"America/Santiago" },
-    { flag:"🇧🇴", zone:"America/La_Paz" },
-    { flag:"🇻🇪", zone:"America/Caracas" },
+    { flag:"https://flagcdn.com/w40/cl.png", zone:"America/Santiago" },
+    { flag:"https://flagcdn.com/w40/bo.png", zone:"America/La_Paz" },
+    { flag:"https://flagcdn.com/w40/ve.png", zone:"America/Caracas" },
 
-    { flag:"🇦🇷", zone:"America/Argentina/Buenos_Aires" },
-    { flag:"🇺🇾", zone:"America/Montevideo" },
-    { flag:"🇵🇾", zone:"America/Asuncion" },
-    { flag:"🇧🇷", zone:"America/Sao_Paulo" },
+    { flag:"https://flagcdn.com/w40/ar.png", zone:"America/Argentina/Buenos_Aires" },
+    { flag:"https://flagcdn.com/w40/uy.png", zone:"America/Montevideo" },
+    { flag:"https://flagcdn.com/w40/py.png", zone:"America/Asuncion" },
+    { flag:"https://flagcdn.com/w40/br.png", zone:"America/Sao_Paulo" },
 
-    { flag:"🇪🇸", zone:"Europe/Madrid" }
+    { flag:"https://flagcdn.com/w40/es.png", zone:"Europe/Madrid" }
 ];
 
 function getNextSpawn() {
@@ -104,8 +104,10 @@ Object.keys(groups)
             border-bottom:1px solid #334155;
             white-space:nowrap;
         ">
-            ${groups[hour].join(" ")}
-        </td>
+           ${groups[hour]
+        .map(flag => `<img src="${flag}" class="flag">`)
+        .join("")}
+</td>
 
         <td style="
             width:90px;
