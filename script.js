@@ -9,18 +9,29 @@ const spawnList = document.getElementById("spawnList");
 const countryTable = document.getElementById("countryTable");
 
 const countries = [
-    { flag: "🇨🇱", name: "Chile", zone: "America/Santiago" },
-    { flag: "🇦🇷", name: "Argentina", zone: "America/Argentina/Buenos_Aires" },
-    { flag: "🇺🇾", name: "Uruguay", zone: "America/Montevideo" },
-    { flag: "🇧🇷", name: "Brasil", zone: "America/Sao_Paulo" },
-    { flag: "🇵🇾", name: "Paraguay", zone: "America/Asuncion" },
-    { flag: "🇧🇴", name: "Bolivia", zone: "America/La_Paz" },
-    { flag: "🇵🇪", name: "Perú", zone: "America/Lima" },
-    { flag: "🇨🇴", name: "Colombia", zone: "America/Bogota" },
-    { flag: "🇪🇨", name: "Ecuador", zone: "America/Guayaquil" },
-    { flag: "🇲🇽", name: "México", zone: "America/Mexico_City" },
-    { flag: "🇺🇸", name: "New York", zone: "America/New_York" },
-    { flag: "🇪🇸", name: "España", zone: "Europe/Madrid" }
+    { flag:"🇲🇽", zone:"America/Mexico_City" },
+
+    { flag:"🇬🇹", zone:"America/Guatemala" },
+    { flag:"🇧🇿", zone:"America/Belize" },
+    { flag:"🇭🇳", zone:"America/Tegucigalpa" },
+    { flag:"🇸🇻", zone:"America/El_Salvador" },
+    { flag:"🇳🇮", zone:"America/Managua" },
+    { flag:"🇨🇷", zone:"America/Costa_Rica" },
+    { flag:"🇵🇦", zone:"America/Panama" },
+    { flag:"🇨🇴", zone:"America/Bogota" },
+    { flag:"🇪🇨", zone:"America/Guayaquil" },
+    { flag:"🇵🇪", zone:"America/Lima" },
+
+    { flag:"🇨🇱", zone:"America/Santiago" },
+    { flag:"🇧🇴", zone:"America/La_Paz" },
+    { flag:"🇻🇪", zone:"America/Caracas" },
+
+    { flag:"🇦🇷", zone:"America/Argentina/Buenos_Aires" },
+    { flag:"🇺🇾", zone:"America/Montevideo" },
+    { flag:"🇵🇾", zone:"America/Asuncion" },
+    { flag:"🇧🇷", zone:"America/Sao_Paulo" },
+
+    { flag:"🇪🇸", zone:"Europe/Madrid" }
 ];
 
 function getNextSpawn() {
@@ -60,25 +71,46 @@ function update() {
     progressBar.style.width =
         Math.max(0, Math.min(100, percent)) + "%";
 
-    countryTable.innerHTML = "";
+countryTable.innerHTML = "";
 
-    countries.forEach(c => {
+const groups = {};
 
-        const hour =
-            next.toLocaleString("es-CL",{
-                hour:"2-digit",
-                minute:"2-digit",
-                hour12:false,
-                timeZone:c.zone
-            });
+countries.forEach(c => {
 
-        countryTable.innerHTML +=
-        `<tr>
-            <td>${c.flag} ${c.name}</td>
-            <td style="text-align:right">${hour}</td>
-        </tr>`;
-
+    const hour = next.toLocaleTimeString("es-CL",{
+        hour:"2-digit",
+        minute:"2-digit",
+        hour12:false,
+        timeZone:c.zone
     });
+
+    if(!groups[hour]){
+        groups[hour] = [];
+    }
+
+    groups[hour].push(c.flag);
+
+});
+
+Object.keys(groups)
+.sort()
+.forEach(hour=>{
+
+    countryTable.innerHTML += `
+        <tr>
+            <td style="font-size:22px;font-weight:bold;">
+                🕒 ${hour}
+            </td>
+        </tr>
+
+        <tr>
+            <td style="font-size:28px;padding-bottom:18px;">
+                ${groups[hour].join(" ")}
+            </td>
+        </tr>
+    `;
+
+});
 
     spawnList.innerHTML="";
 
