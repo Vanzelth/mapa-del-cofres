@@ -102,3 +102,12 @@ li{
     background:#334155;
     border-radius:10px;
 }
+
+.flag{
+    width:32px;
+    height:24px;
+    margin-right:6px;
+    border-radius:3px;
+    vertical-align:middle;
+    box-shadow:0 0 3px rgba(0,0,0,.4);
+}
